@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..400;1,14..32,300..400&family=Playwrite+CU:wght@100..400&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-maroon: #6E0D31;
+  --color-pink: #E84596;
+  --color-green: #9FCC45;
+  --color-caramel: #FFD695;
+  --color-neutral: #FDFDFD;
+
+  --color-background: var(--color-neutral);
+  --color-foreground: var(--color-maroon);
+
+  --font-okia: var(--font-okia), 'OKIATYPE', sans-serif;
+  --font-playwrite: 'Playwrite CU', cursive;
+  --font-inter: var(--font-inter), 'Inter', sans-serif;
+  --font-host: var(--font-host), 'Host Grotesk', sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-okia);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-maroon);
+}
+
+@layer utilities {
+  .border-sticker {
+    border: 2px solid var(--color-maroon);
+  }
+
+  .hover-pop {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Physical sticker press simulation: shift 2px down and invert colors */
+  .hover-pop:hover {
+    transform: translateY(2px);
+    background-color: var(--color-maroon);
+    color: var(--color-neutral);
+  }
+}
