@@ -12,7 +12,7 @@ export default function FooterSection() {
             </div>
 
             <div className="max-w-[1400px] mx-auto px-6 py-16 md:py-32 flex flex-col items-center text-center">
-                <h2 className="font-okia text-7xl md:text-[10rem] leading-[0.8] mb-8 text-[#9FCC45] drop-shadow-sm tracking-widest z-10 relative">
+                <h2 className="font-okia text-7xl md:text-[10rem] leading-[0.8] mb-8 !text-white drop-shadow-sm tracking-widest z-10 relative">
                     <span className="absolute -left-[5%] -top-[10%] opacity-20 rotate-[-15deg] mix-blend-multiply w-[300px] h-[300px] bg-[radial-gradient(circle,_#9FCC45_4px,_transparent_4.5px)] bg-[size:16px_16px] pointer-events-none rounded-full"></span>
                     THE<br/>STREET<br/>CLUB
                 </h2>
@@ -50,11 +50,11 @@ export default function FooterSection() {
                  <div className="w-full max-w-[1000px] aspect-[4/1] relative opacity-90 mt-12 mb-8 pointer-events-none hover:scale-105 transition-transform duration-500">
                     <Image src="/LOGO_OKIA.svg" alt="O KIA Footer Logo" fill className="object-contain" />
                 </div>
+            </div>
 
-                {/* New Footer Artwork Asset */}
-                <div className="w-full h-[200px] md:h-[400px] relative mt-16 overflow-hidden">
-                    <Image src="/half tone street culture/footer.svg" alt="Footer Artwork" fill className="object-contain" />
-                </div>
+            {/* New Footer Artwork Asset - Moved outside max-w container for full width */}
+            <div className="w-full h-[300px] md:h-[600px] relative mt-8 overflow-hidden">
+                <Image src="/half tone street culture/footer.svg" alt="Footer Artwork" fill className="object-contain object-bottom" />
             </div>
         </footer>
     );

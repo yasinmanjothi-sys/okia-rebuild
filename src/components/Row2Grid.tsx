@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import FoodCarousel from './FoodCarousel';
 import MenuCenterBlock from './MenuCenterBlock';
 import DrinksCarousel from './DrinksCarousel';
@@ -10,10 +11,18 @@ export default function Row2Grid() {
             <div className="flex flex-col flex-1 gap-2 h-auto lg:h-[90vh]">
                 <FoodCarousel />
                 
-                {/* Bottom spacer block for visual balance similar to Poppi's structure */}
-                <div className="flex-[0.5] bg-[#6E0D31] rounded-[32px] p-8 flex flex-col justify-center items-center text-[#FDFDFD] relative overflow-hidden group">
-                    <h3 className="font-okia text-2xl tracking-widest text-[#9FCC45]">WHAT PEOPLE THINK</h3>
-                    <p className="font-playwrite italic opacity-80 mt-4 text-center text-sm md:text-base pr-4">"The Bánh Mì here is an absolute sensory overload in the best way possible."</p>
+                {/* Image block for visual balance */}
+                <div className="flex-[0.5] bg-[#6E0D31] rounded-[32px] relative overflow-hidden group border-sticker">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-full h-full scale-110">
+                            <Image 
+                                src="/half tone street culture/pots and cups.svg" 
+                                alt="Vietnamese Pots and Cups" 
+                                fill 
+                                className="object-cover"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
 

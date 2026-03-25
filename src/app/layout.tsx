@@ -40,14 +40,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${okiaType.variable} ${hostGrotesk.variable} antialiased font-inter font-light tracking-wide bg-neutral text-maroon selection:bg-pink selection:text-maroon flex flex-col min-h-screen`}
       >
-        <AnimatedRibbon 
-            items={["Ca Phe Phin", "Tuong Theater", "Sensory Overload", "Saigon Street Vibe", "Authentic Banh Mi"]} 
-            bgColor="bg-[#E84596]" 
-            textColor="text-[#FDFDFD]" 
-            maskIcon={true}
-            speed={40}
-        />
-        
         {children}
       </body>
     </html>
