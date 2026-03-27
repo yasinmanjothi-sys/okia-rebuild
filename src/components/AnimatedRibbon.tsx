@@ -29,7 +29,7 @@ export default function AnimatedRibbon({ items, bgColor, textColor, maskIcon, pu
     // By multiplying by baseItems.length, we lock the time-per-element visually so all ribbons crawl at identical paces.
     const calculatedDuration = baseItems.length * (speed / 10);
 
-    const RibbonContent = () => (
+    const renderRibbonContent = () => (
         <div className="flex items-center shrink-0 min-w-max">
             {baseItems.map((item, index) => (
                 <div key={index} className="flex items-center shrink-0 pr-12 lg:pr-16">
@@ -62,8 +62,8 @@ export default function AnimatedRibbon({ items, bgColor, textColor, maskIcon, pu
                     x: { repeat: Infinity, repeatType: "loop", duration: calculatedDuration, ease: "linear" },
                 }}
             >
-                <RibbonContent />
-                <RibbonContent />
+                {renderRibbonContent()}
+                {renderRibbonContent()}
             </motion.div>
         </div>
     );

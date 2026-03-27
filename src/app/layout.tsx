@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Host_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import AnimatedRibbon from "@/components/AnimatedRibbon";
 
 const inter = Inter({
   variable: "--font-inter",

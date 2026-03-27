@@ -14,24 +14,91 @@ const triviaItems = [
     "In Vietnam, coffee is often enjoyed slowly, watching the world go by."
 ];
 
+const maskData = [
+    { name: "Ai", src: "/Main Masks /Ai (love).svg" },
+    { name: "Hy", src: "/Main Masks /Hy (joy) svg.svg" },
+    { name: "No", src: "/Main Masks /No (anger).svg" },
+    { name: "O", src: "/Main Masks /O (sadness).svg" },
+    { name: "O KIA", src: "/Main Masks /O kia (surprise).svg" }
+];
+
+const stickerData = [
+    "/half tone street culture/street culture halftones-01.svg",
+    "/half tone street culture/street culture halftones-02.svg",
+    "/half tone street culture/street culture halftones-03.svg",
+    "/half tone street culture/street culture halftones-04.svg",
+    "/half tone street culture/street culture halftones-06.svg",
+    "/half tone street culture/pots and cups.svg"
+];
+
 export default function StoryRowGrid() {
     const [triviaIndex, setTriviaIndex] = useState(0);
-    const [isRightHovered, setIsRightHovered] = useState(false);
+    const [maskIndex, setMaskIndex] = useState(0);
+    const [stickerIndex, setStickerIndex] = useState(0);
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const triviaTimer = setInterval(() => {
             setTriviaIndex((prev) => (prev === triviaItems.length - 1 ? 0 : prev + 1));
         }, 8000);
-        return () => clearInterval(timer);
+
+        const maskTimer = setInterval(() => {
+            setMaskIndex((prev) => (prev === maskData.length - 1 ? 0 : prev + 1));
+        }, 4000);
+
+        const stickerTimer = setInterval(() => {
+            setStickerIndex((prev) => (prev === stickerData.length - 1 ? 0 : prev + 1));
+        }, 5000);
+
+        return () => {
+            clearInterval(triviaTimer);
+            clearInterval(maskTimer);
+            clearInterval(stickerTimer);
+        };
     }, []);
 
     return (
-        <div className="w-full flex flex-col lg:flex-row gap-2 min-h-[90vh]">
-            {/* Left Column */}
-            <div className="flex flex-col flex-1 gap-2 h-auto lg:h-[90vh]">
+        <div className="w-full flex flex-col lg:flex-row gap-2 min-h-screen lg:min-h-[90vh]">
+            {/* Center Column: The Story Block - NOW FIRST ON MOBILE */}
+            <div className="flex flex-col flex-1 gap-2 order-1 lg:order-2">
+                <div className="flex-1 bg-[#6E0D31] rounded-[32px] flex flex-col items-center justify-center overflow-hidden w-full relative group border-sticker min-h-[500px]">
+                    {/* Integrated Frame SVG - Ensure it hits the edges by removing parent padding for the frame specifically */}
+                    <div className="absolute inset-0 z-10 pointer-events-none">
+                        <Image 
+                            src="/Curtains for story section .svg" 
+                            alt="Story Section Frame" 
+                            fill 
+                            className="object-cover scale-x-[1.02] md:scale-x-100"
+                            priority
+                        />
+                    </div>
+
+                    <div className="relative z-20 flex flex-col items-center max-w-[80%] md:max-w-[75%] mx-auto p-8 md:p-12">
+                        <h2 className="font-okia text-4xl md:text-5xl lg:text-6xl !text-[#9FCC45] text-center drop-shadow-md mb-8 uppercase tracking-widest">
+                            The Story
+                        </h2>
+
+                        <div className="flex flex-col gap-6 text-[#9FCC45] text-center">
+                            <p className="font-host text-2xl md:text-3xl lg:text-4xl font-black leading-tight italic uppercase tracking-tight">
+                                &quot;An expression of surprise, wonder, and sensory delight.&quot;
+                            </p>
+                            
+                            <div className="space-y-6 font-inter text-base md:text-lg font-bold tracking-wide">
+                                <p>
+                                    Born from the vibrant street culture of Saigon and the theatrical soul of Vietnamese performance art, O KIA Coffee is more than a cafe.
+                                </p>
+                                <p>
+                                    We bring the bold artistry and authentic tastes of Vietnam to Nairobi, creating a space where every sip tells a story and every visit is a sensory overload in the best way possible.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Left Column - NOW SECOND ON MOBILE */}
+            <div className="flex flex-col flex-1 gap-2 order-2 lg:order-1">
                 {/* Left Top Block [Large] - Pink (#E84596) */}
-                <div className="flex-[2] bg-[#E84596] rounded-[32px] p-8 md:p-12 relative overflow-hidden flex flex-col items-center border-sticker shadow-inner">
-                    {/* Trivia SVG Illustration - Max size, bleeding off bottom to hide sharp edges */}
+                <div className="flex-[2] bg-[#E84596] rounded-[32px] p-8 md:p-12 relative overflow-hidden flex flex-col items-center border-sticker shadow-inner min-h-[400px]">
                     <div className="absolute bottom-[-20px] right-0 w-full h-[220px] md:h-[320px] z-0 pointer-events-none">
                         <Image 
                             src="/half tone street culture/trivia.svg" 
@@ -42,7 +109,6 @@ export default function StoryRowGrid() {
                     </div>
 
                     <div className="z-10 text-center w-full max-w-lg mt-4 md:mt-8">
-                        {/* Match Story Title Style and Positioning */}
                         <h2 className="font-okia text-4xl md:text-5xl lg:text-6xl text-[#6E0D31] text-center drop-shadow-md mb-8 md:mb-12 uppercase tracking-widest">
                             Did you know?
                         </h2>
@@ -64,96 +130,66 @@ export default function StoryRowGrid() {
                     </div>
                 </div>
                 
-                {/* Left Bottom Block [Small] - Green (#9FCC45) */}
-                <div className="flex-[0.5] bg-[#9FCC45] rounded-[32px] p-8 flex flex-col justify-center items-center relative overflow-hidden border-sticker shadow-inner">
-                    <span className="font-okia text-3xl text-[#6E0D31] tracking-[0.2em] z-10 uppercase">Authentic</span>
+                {/* Left Bottom Block [Small] - Green (#9FCC45) - NOW CYCLING MASKS (LARGE) */}
+                <div className="flex-[0.8] bg-[#9FCC45] rounded-[32px] p-4 flex flex-col justify-center items-center relative overflow-hidden border-sticker shadow-inner min-h-[300px] md:min-h-[200px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div 
+                            key={maskIndex}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            className="flex flex-col items-center justify-center w-full h-full gap-4"
+                        >
+                            <div className="relative w-32 h-32 md:w-44 md:h-44 lg:w-52 lg:h-52 bg-[#FDFDFD] rounded-full border-[6px] border-[#E84596] shadow-xl p-4 flex items-center justify-center">
+                                <div className="relative w-full h-full">
+                                    <Image src={maskData[maskIndex].src} alt={maskData[maskIndex].name} fill className="object-contain" />
+                                </div>
+                            </div>
+                            <span className="font-okia text-4xl md:text-6xl lg:text-7xl text-[#6E0D31] tracking-[0.2em] uppercase leading-none">
+                                {maskData[maskIndex].name}
+                            </span>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
 
-            {/* Center Column: The Story Block */}
-            <div className="flex flex-col flex-1 gap-2 h-auto lg:h-[90vh]">
-                <div className="flex-1 bg-[#6E0D31] rounded-[32px] p-8 md:p-12 flex flex-col items-center overflow-hidden w-full relative group border-sticker">
-                    {/* Halftone Overlay - KEPT ONLY HERE */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle,_#FDFDFD_2px,_transparent_2.5px)] bg-[size:16px_16px] opacity-10 pointer-events-none z-0" />
-                    
-                    {/* Footer SVG Artwork - Behind Curtains */}
-                    <div className="absolute bottom-0 left-0 right-0 h-[150px] md:h-[250px] z-0 pointer-events-none opacity-80">
-                        <Image 
-                            src="/half tone street culture/footer.svg" 
-                            alt="Vietnamese Street Culture Art Background" 
-                            fill 
-                            className="object-contain object-bottom"
-                        />
-                    </div>
-
-                    {/* Integrated Frame SVG - On top of footer art */}
-                    <div className="absolute inset-0 z-10 pointer-events-none">
-                        <Image 
-                            src="/Curtains for story section .svg" 
-                            alt="Story Section Frame" 
-                            fill 
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-
-                    <h2 className="font-okia text-4xl md:text-5xl lg:text-6xl !text-[#9FCC45] text-center drop-shadow-md mb-12 uppercase tracking-widest z-20 mt-8">
-                        The Story
-                    </h2>
-
-                    <div className="flex-1 w-full flex flex-col gap-8 overflow-y-auto no-scrollbar z-20 text-[#9FCC45] relative px-4">
-                        <p className="font-host text-xl md:text-2xl font-bold leading-relaxed text-center italic max-w-[85%] mx-auto">
-                            "O KIA — an expression of surprise, wonder, and sensory delight."
-                        </p>
-                        
-                        <div className="space-y-6 font-inter text-lg md:text-xl font-light tracking-wide text-center max-w-[85%] mx-auto">
-                            <p>
-                                Born from the vibrant street culture of Saigon and the theatrical soul of Vietnamese performance art, O KIA Coffee is more than a cafe.
-                            </p>
-                            <p>
-                                We bring the bold artistry and authentic tastes of Vietnam to Nairobi, creating a space where every sip tells a story and every visit is a sensory overload in the best way possible.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Right Column */}
-            <div className="flex flex-col flex-1 gap-2 h-auto lg:h-[90vh]">
-                {/* Right Top Block [Large] - Orange (#FFD695) */}
-                <div className="flex-[2] bg-[#FFD695] rounded-[32px] p-6 relative overflow-hidden flex flex-col items-center justify-center border-sticker shadow-inner">
-                    <div className="z-10 text-center">
-                        <h3 className="font-okia text-4xl text-[#6E0D31] uppercase tracking-tighter mb-2">Saigon</h3>
-                        <p className="font-playwrite italic text-[#6E0D31] text-lg">Street Soul</p>
-                    </div>
+            {/* Right Column - NOW THIRD ON MOBILE */}
+            <div className="flex flex-col flex-1 gap-2 order-3 lg:order-3">
+                {/* Right Top Block [Large] - Orange (#FFD695) & CYCLING STICKERS */}
+                <div className="flex-[2] bg-[#FFD695] rounded-[32px] p-8 relative overflow-hidden flex flex-col items-center justify-center border-sticker shadow-inner min-h-[400px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div 
+                            key={stickerIndex}
+                            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+                            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                            exit={{ opacity: 0, scale: 1.1, rotate: 5 }}
+                            transition={{ duration: 0.7, ease: "easeInOut" }}
+                            className="relative w-full h-64 md:h-full flex items-center justify-center"
+                        >
+                            <div className="relative w-[85%] h-[85%]">
+                                <Image 
+                                    src={stickerData[stickerIndex]} 
+                                    alt="Halftone Sticker" 
+                                    fill 
+                                    className="object-contain" 
+                                    priority
+                                />
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
                 
-                {/* Right Bottom Block [Small] - White (#FDFDFD) */}
-                <motion.div 
-                    onMouseEnter={() => setIsRightHovered(true)}
-                    onMouseLeave={() => setIsRightHovered(false)}
-                    className="flex-[0.5] bg-[#FDFDFD] rounded-[32px] p-8 flex flex-col justify-center items-center relative overflow-hidden group border-sticker cursor-pointer shadow-inner"
-                >
-                    <motion.span 
-                        animate={{ scale: isRightHovered ? 1.1 : 1 }}
-                        className="font-okia text-4xl md:text-5xl text-[#6E0D31] tracking-[0.2em] z-10 uppercase transition-all"
-                    >
-                        Ô KÌA!
-                    </motion.span>
-
-                    <AnimatePresence>
-                        {isRightHovered && (
-                            <motion.span
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: 10 }}
-                                className="font-playwrite italic text-[#E84596] text-lg md:text-xl mt-2 tracking-widest z-10"
-                            >
-                                Taste the Surprise
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
+                <div className="flex-[0.5] bg-[#6E0D31] rounded-[32px] relative overflow-hidden border-sticker shadow-inner group min-h-[200px]">
+                    <div className="absolute inset-0 w-full h-full">
+                        <Image 
+                            src="/images/masks for row 2 .png" 
+                            alt="OKIA Masks" 
+                            fill 
+                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );

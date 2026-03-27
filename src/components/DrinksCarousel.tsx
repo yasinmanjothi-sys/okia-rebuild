@@ -23,14 +23,14 @@ export default function DrinksCarousel() {
                 {/* Navigation Controls */}
                 <button 
                     onClick={handlePrev} 
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDFDFD]/90 backdrop-blur border-sticker rounded-full flex items-center justify-center font-bold text-[#6E0D31] text-2xl z-20 hover:scale-110 md:opacity-0 group-hover/carousel:opacity-100 transition-opacity shadow-md"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDFDFD]/90 backdrop-blur border-sticker rounded-full flex items-center justify-center font-bold text-[#6E0D31] text-2xl z-20 hover:scale-110 transition-all shadow-md opacity-100"
                     aria-label="Previous image"
                 >
                     &lt;
                 </button>
                 <button 
                     onClick={handleNext} 
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDFDFD]/90 backdrop-blur border-sticker rounded-full flex items-center justify-center font-bold text-[#6E0D31] text-2xl z-20 hover:scale-110 md:opacity-0 group-hover/carousel:opacity-100 transition-opacity shadow-md"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDFDFD]/90 backdrop-blur border-sticker rounded-full flex items-center justify-center font-bold text-[#6E0D31] text-2xl z-20 hover:scale-110 transition-all shadow-md opacity-100"
                     aria-label="Next image"
                 >
                     &gt;

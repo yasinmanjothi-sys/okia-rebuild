@@ -65,7 +65,7 @@ export default function MenuCenterBlock() {
             <div className="absolute inset-0 bg-[radial-gradient(circle,_#6E0D31_2px,_transparent_2.5px)] bg-[size:12px_12px] opacity-10 pointer-events-none mix-blend-multiply z-0" />
             
             <h2 className="font-okia text-5xl md:text-6xl lg:text-7xl text-[#FDFDFD] text-center drop-shadow-md mb-6 uppercase tracking-wider z-10 mt-8">
-                Full Menu
+                Menu
             </h2>
             
             <div className="flex justify-center flex-wrap gap-4 md:gap-8 mb-8 font-okia tracking-widest text-xl lg:text-3xl text-[#6E0D31] z-10 w-full">
