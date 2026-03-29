@@ -38,13 +38,13 @@ export default function Home() {
                 />
              </div>
 
-             {/* Row 3: Graphics & Media Layout - MOVED UP ON MOBILE */}
-             <div className="w-full order-4 lg:order-6">
-                <Row3MediaGrid />
+             {/* Row 2: The 3-Column Masonry Menu Strategy - MOVED UP IN CODE FOR DESKTOP */}
+             <div className="w-full order-6 lg:order-none">
+                <Row2Grid />
              </div>
 
              {/* Pure Mask Transition Ribbon relocated below Row 2 */}
-             <div className="w-full z-[85] order-5 lg:order-5">
+             <div className="w-full z-[85] order-5 lg:order-none">
                   <AnimatedRibbon 
                       items={["mask"]} 
                       bgColor="bg-[#6E0D31]" 
@@ -54,13 +54,13 @@ export default function Home() {
                   />
              </div>
 
-             {/* Row 2: The 3-Column Masonry Menu Strategy - MOVED DOWN ON MOBILE */}
-             <div className="w-full order-6 lg:order-4">
-                <Row2Grid />
+             {/* Row 3: Graphics & Media Layout - MOVED DOWN IN CODE FOR DESKTOP */}
+             <div className="w-full order-4 lg:order-none">
+                <Row3MediaGrid />
              </div>
 
              {/* Social Divider Ribbon */}
-             <div className="w-full relative z-[85] order-7">
+             <div className="w-full relative z-[85] order-7 lg:order-none">
                  <AnimatedRibbon 
                      items={["Follow the vibe on Instagram", "Join the Street Club", "Tag @okiacoffee", "Share the chaos"]} 
                      bgColor="bg-[#9FCC45]" 
@@ -71,12 +71,12 @@ export default function Home() {
              </div>
              
              {/* Row 4: Pure Artwork Display */}
-             <div className="w-full order-7 lg:order-none">
+             <div className="w-full order-8 lg:order-none">
                 <Row4Artwork />
              </div>
 
              {/* Poppi Style Massive Footer */}
-             <div className="w-full order-8 lg:order-none">
+             <div className="w-full order-9 lg:order-none">
                 <FooterSection />
              </div>
         </main>
