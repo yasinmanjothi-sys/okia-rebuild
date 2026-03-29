@@ -40,7 +40,7 @@ export default function Row3MediaGrid() {
     const currentMask = peekingMasks[maskIndex];
 
     return (
-        <div className="w-full flex flex-col md:flex-row gap-2 min-h-[70vh]">
+        <div className="w-full lg:max-w-[1600px] lg:mx-auto flex flex-col md:flex-row gap-2 min-h-[70vh] lg:min-h-0 lg:aspect-[16/6]">
             
             {/* Left Box: SENSORY OVERLOAD */}
             <motion.div 
@@ -69,8 +69,8 @@ export default function Row3MediaGrid() {
                 />
 
                 <div className="z-10 text-center flex flex-col items-center select-none pointer-events-none">
-                    <h2 className="font-playwrite text-4xl md:text-5xl lg:text-6xl text-[#E84596] mb-4 drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] rotate-[-5deg]">Sensory</h2>
-                    <h2 className="font-okia text-5xl md:text-7xl lg:text-8xl text-[#6E0D31] tracking-widest drop-shadow-[0_4px_4px_rgba(255,255,255,0.5)]">OVERLOAD</h2>
+                    <h2 className="font-playwrite text-4xl md:text-5xl lg:text-4xl text-[#E84596] mb-4 drop-shadow-[0_2px_2px_rgba(255,255,255,0.8)] rotate-[-5deg]">Sensory</h2>
+                    <h2 className="font-okia text-5xl md:text-7xl lg:text-6xl text-[#6E0D31] tracking-widest drop-shadow-[0_4px_4px_rgba(255,255,255,0.5)]">OVERLOAD</h2>
                 </div>
                 
                 {/* Cycling Peeking Masks */}
@@ -95,7 +95,7 @@ export default function Row3MediaGrid() {
 
             {/* Right Box: VIBE CHECK CAROUSEL */}
             <div className="flex-[2] bg-[#9FCC45] rounded-[32px] overflow-hidden relative group/carousel p-2 border-sticker flex flex-col">
-                 <div className="w-full h-full min-h-[400px] relative rounded-[24px] overflow-hidden bg-[#6E0D31] flex flex-col items-center justify-center">
+                 <div className="w-full h-full min-h-[400px] lg:min-h-0 relative rounded-[24px] overflow-hidden bg-[#6E0D31] flex flex-col items-center justify-center">
                      
                      <button onClick={handlePrev} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDFDFD]/90 backdrop-blur border-sticker rounded-full flex items-center justify-center font-bold text-[#6E0D31] text-2xl z-30 hover:scale-110 transition-all shadow-md opacity-100">&lt;</button>
                      <button onClick={handleNext} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#FDFDFD]/90 backdrop-blur border-sticker rounded-full flex items-center justify-center font-bold text-[#6E0D31] text-2xl z-30 hover:scale-110 transition-all shadow-md opacity-100">&gt;</button>

@@ -12,21 +12,23 @@ export default function Home() {
         <main className="w-full min-h-screen bg-neutral p-2 flex flex-col gap-2 mt-0 overflow-x-hidden">
              {/* Dynamic Solid Navbar - Now at the very top */}
              <div className="w-full flex justify-center sticky top-0 z-[90] pointer-events-none mb-0">
-                <div className="w-full max-w-full px-0 pointer-events-auto">
+                <div className="w-full max-w-full lg:max-w-[1600px] lg:mx-auto px-0 pointer-events-auto">
                     <Navbar />
                 </div>
              </div>
 
              {/* Row 1: The Hero Full Viewport Block */}
-             <div className="w-full h-[90vh] relative flex-shrink-0 z-[80] block">
+             <div className="w-full h-[90vh] lg:h-screen lg:max-w-[1600px] lg:mx-auto relative flex-shrink-0 z-[80] block order-1 lg:order-none">
                  <HeroSection />
              </div>
 
              {/* Row 1.5: The Story Row - MOVED DIRECTLY AFTER HERO */}
-             <StoryRowGrid />
+             <div className="w-full order-2 lg:order-none">
+                <StoryRowGrid />
+             </div>
 
              {/* Top Ribbon - MOVED BELOW STORY */}
-             <div className="w-full z-[85]">
+             <div className="w-full z-[85] order-3">
                 <AnimatedRibbon 
                     items={["Ca Phe Phin", "Tuong Theater", "Sensory Overload", "Saigon Street Vibe", "Authentic Banh Mi"]} 
                     bgColor="bg-[#E84596]" 
@@ -36,25 +38,29 @@ export default function Home() {
                 />
              </div>
 
-             {/* Row 2: The 3-Column Masonry Menu Strategy mapping directly to O KIA content */}
-             <Row2Grid />
-
-             {/* Pure Mask Transition Ribbon relocated below Row 2 */}
-             <div className="w-full z-[85]">
-                 <AnimatedRibbon 
-                     items={["mask"]} 
-                     bgColor="bg-[#6E0D31]" 
-                     textColor="text-[#FDFDFD]" 
-                     pureMasks={true}
-                     speed={40}
-                 />
+             {/* Row 3: Graphics & Media Layout - MOVED UP ON MOBILE */}
+             <div className="w-full order-4 lg:order-6">
+                <Row3MediaGrid />
              </div>
 
-             {/* Row 3: Graphics & Media Layout */}
-             <Row3MediaGrid />
+             {/* Pure Mask Transition Ribbon relocated below Row 2 */}
+             <div className="w-full z-[85] order-5 lg:order-5">
+                  <AnimatedRibbon 
+                      items={["mask"]} 
+                      bgColor="bg-[#6E0D31]" 
+                      textColor="text-[#FDFDFD]" 
+                      pureMasks={true}
+                      speed={40}
+                  />
+             </div>
+
+             {/* Row 2: The 3-Column Masonry Menu Strategy - MOVED DOWN ON MOBILE */}
+             <div className="w-full order-6 lg:order-4">
+                <Row2Grid />
+             </div>
 
              {/* Social Divider Ribbon */}
-             <div className="w-full relative z-[85]">
+             <div className="w-full relative z-[85] order-7">
                  <AnimatedRibbon 
                      items={["Follow the vibe on Instagram", "Join the Street Club", "Tag @okiacoffee", "Share the chaos"]} 
                      bgColor="bg-[#9FCC45]" 
@@ -65,10 +71,14 @@ export default function Home() {
              </div>
              
              {/* Row 4: Pure Artwork Display */}
-             <Row4Artwork />
+             <div className="w-full order-7 lg:order-none">
+                <Row4Artwork />
+             </div>
 
              {/* Poppi Style Massive Footer */}
-             <FooterSection />
+             <div className="w-full order-8 lg:order-none">
+                <FooterSection />
+             </div>
         </main>
     );
 }

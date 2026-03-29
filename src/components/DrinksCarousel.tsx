@@ -16,10 +16,10 @@ export default function DrinksCarousel() {
     const handlePrev = () => setCurrentIndex(prev => prev === 0 ? images.length - 1 : prev - 1);
 
     return (
-        <div className="flex-[2] bg-[#9FCC45] rounded-[32px] p-6 relative overflow-hidden flex flex-col items-center group">
-            <h2 className="font-okia text-4xl md:text-5xl text-[#6E0D31] tracking-widest mb-6 z-10 drop-shadow-sm uppercase text-center">Signature Drinks</h2>
+        <div className="flex-[2] bg-[#9FCC45] rounded-[32px] p-6 lg:p-4 relative overflow-hidden flex flex-col items-center group">
+            <h2 className="font-okia text-4xl md:text-5xl lg:text-4xl text-[#6E0D31] lg:text-white tracking-widest mb-6 z-10 drop-shadow-sm uppercase text-center">Signature Drinks</h2>
             
-            <div className="flex-1 w-full min-h-[300px] md:min-h-[400px] relative rounded-2xl overflow-hidden border-sticker shadow-xl z-10 bg-[#6E0D31] group/carousel">
+            <div className="flex-1 w-full min-h-[300px] md:min-h-[400px] lg:min-h-0 relative rounded-2xl overflow-hidden border-sticker shadow-xl z-10 bg-[#6E0D31] group/carousel">
                 {/* Navigation Controls */}
                 <button 
                     onClick={handlePrev} 

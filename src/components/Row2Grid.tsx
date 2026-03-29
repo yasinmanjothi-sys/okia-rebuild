@@ -6,13 +6,13 @@ import DrinksCarousel from './DrinksCarousel';
 
 export default function Row2Grid() {
     return (
-        <div className="w-full flex flex-col lg:flex-row gap-2 min-h-screen lg:min-h-[90vh]">
+        <div className="w-full lg:max-w-[1600px] lg:mx-auto flex flex-col lg:flex-row gap-2 min-h-screen lg:min-h-0">
             {/* Left Column: Food Carousel */}
-            <div className="flex flex-col flex-1 gap-2">
+            <div className="flex flex-col flex-1 gap-2 lg:aspect-[3/4]">
                 <FoodCarousel />
                 
                 {/* Image block for visual balance */}
-                <div className="flex-[0.5] bg-[#6E0D31] rounded-[32px] relative overflow-hidden group border-sticker min-h-[250px] lg:min-h-0">
+                <div className="flex-[0.5] bg-[#6E0D31] rounded-[32px] relative overflow-hidden group border-sticker min-h-[160px] lg:min-h-0">
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="relative w-full h-full scale-110">
                             <Image 
@@ -27,22 +27,22 @@ export default function Row2Grid() {
             </div>
 
             {/* Center Column: Tall Menu Block */}
-            <div className="flex flex-col flex-1 gap-2 min-h-[600px] lg:min-h-0">
+            <div className="flex flex-col flex-1 gap-2 min-h-[600px] lg:min-h-0 lg:aspect-[3/4]">
                 <MenuCenterBlock />
             </div>
 
             {/* Right Column: Drinks Carousel */}
-            <div className="flex flex-col flex-1 gap-2">
+            <div className="flex flex-col flex-1 gap-2 lg:aspect-[3/4]">
                 <DrinksCarousel />
                 
                 {/* Bottom decorative blocks */}
-                <div className="flex-[0.5] grid grid-cols-2 gap-2 min-h-[200px] lg:min-h-0">
-                     <div className="bg-[#9FCC45] rounded-[32px] flex items-center justify-center p-8 relative border-sticker overflow-hidden group">
+                <div className="flex-[0.5] grid grid-cols-2 gap-2 min-h-[180px] lg:min-h-0">
+                     <div className="bg-[#9FCC45] rounded-[32px] flex items-center justify-center p-8 lg:p-4 relative border-sticker overflow-hidden group">
                         <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-110">
                             <Image src="/LOGO_OKIA.svg" alt="O KIA Logo" fill className="object-contain" />
                         </div>
                      </div>
-                     <div className="bg-[#E84596] rounded-[32px] flex items-center justify-center p-8 relative border-sticker overflow-hidden group">
+                     <div className="bg-[#E84596] rounded-[32px] flex items-center justify-center p-8 lg:p-4 relative border-sticker overflow-hidden group">
                         <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-110">
                             <Image src="/NEW LOGO NAVBAR .svg" alt="O KIA Navbar Logo" fill className="object-contain" />
                         </div>

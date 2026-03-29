@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 export default function Row4Artwork() {
     return (
-        <div className="w-full flex flex-col md:flex-row gap-2 min-h-screen md:min-h-[60vh]">
+        <div className="w-full lg:max-w-[1600px] lg:mx-auto flex flex-col md:flex-row gap-2 min-h-screen md:min-h-[60vh] lg:min-h-0 lg:aspect-[16/5]">
             {/* Left Block: Contact Us */}
-            <div className="flex-1 bg-[#9FCC45] rounded-[32px] relative overflow-hidden flex flex-col items-center justify-center p-8 md:p-12 border-sticker min-h-[450px] md:min-h-0">
+            <div className="flex-1 bg-[#9FCC45] rounded-[32px] relative overflow-hidden flex flex-col items-center justify-center p-8 md:p-12 lg:p-8 border-sticker min-h-[450px] md:min-h-0 lg:min-h-0">
                 <div className="w-full max-w-md text-center flex flex-col items-center">
-                    <h2 className="font-okia text-5xl md:text-7xl text-[#6E0D31] mb-6 tracking-widest uppercase">
+                    <h2 className="font-okia text-5xl md:text-7xl lg:text-4xl text-[#6E0D31] mb-6 tracking-widest uppercase">
                         Contact Us
                     </h2>
                     
@@ -45,8 +45,8 @@ export default function Row4Artwork() {
             </div>
 
             {/* Right Block: Google Maps */}
-            <div className="flex-1 bg-[#E84596] rounded-[32px] relative overflow-hidden flex items-center justify-center border-sticker p-8 md:p-12 min-h-[400px] md:min-h-0">
-                <div className="relative w-full h-full min-h-[350px] md:min-h-0 rounded-[24px] overflow-hidden border-[3px] border-[#6E0D31] group">
+            <div className="flex-1 bg-[#E84596] rounded-[32px] relative overflow-hidden flex items-center justify-center border-sticker p-8 md:p-12 min-h-[400px] md:min-h-0 lg:min-h-0">
+                <div className="relative w-full h-full min-h-[350px] md:min-h-0 lg:min-h-0 rounded-[24px] overflow-hidden border-[3px] border-[#6E0D31] group">
                     <Image 
                         src="/MAP.png" 
                         alt="Location Map" 
