@@ -17,18 +17,8 @@ export default function Home() {
                 </div>
              </div>
 
-             {/* Row 1: The Hero Full Viewport Block */}
-             <div className="w-full h-[90vh] lg:h-screen lg:max-w-[1600px] lg:mx-auto relative flex-shrink-0 z-[80] block order-1 lg:order-none">
-                 <HeroSection />
-             </div>
-
-             {/* Row 1.5: The Story Row - MOVED DIRECTLY AFTER HERO */}
-             <div className="w-full order-2 lg:order-none">
-                <StoryRowGrid />
-             </div>
-
-             {/* Top Ribbon - MOVED BELOW STORY */}
-             <div className="w-full z-[85] order-3">
+             {/* Top Ribbon - MOVED TO ABSOLUTE TOP AFTER NAV BAR */}
+             <div className="w-full z-[100] order-1 lg:order-none">
                 <AnimatedRibbon 
                     items={["Ca Phe Phin", "Tuong Theater", "Sensory Overload", "Saigon Street Vibe", "Authentic Banh Mi"]} 
                     bgColor="bg-[#E84596]" 
@@ -36,6 +26,16 @@ export default function Home() {
                     maskIcon={true}
                     speed={40}
                 />
+             </div>
+
+             {/* Row 1: The Hero Full Viewport Block */}
+             <div className="w-full h-[90vh] lg:h-screen lg:max-w-[1600px] lg:mx-auto relative flex-shrink-0 z-[80] block order-2 lg:order-none">
+                  <HeroSection />
+             </div>
+
+             {/* Row 1.5: The Story Row - MOVED DIRECTLY AFTER HERO */}
+             <div className="w-full order-3 lg:order-none">
+                <StoryRowGrid />
              </div>
 
              {/* Row 2: The 3-Column Masonry Menu Strategy - MOVED UP IN CODE FOR DESKTOP */}
