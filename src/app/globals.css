@@ -48,4 +48,19 @@ h1, h2, h3, h4, h5, h6 {
     background-color: var(--color-maroon);
     color: var(--color-neutral);
   }
+
+  /* Dark "stage" backdrop: replaces flat brand-color fills as the default
+     scene background. One warm glow upstage-center, vignetted at the edges,
+     so color reads as lighting rather than a solid paint fill.
+     Deliberately does NOT set `position` — combine with whatever positioning
+     utility (relative/sticky/fixed) the consumer needs; setting it here would
+     silently override utilities like `sticky` since both live in the same
+     cascade layer and this rule compiles after Tailwind's. */
+  .stage-surface {
+    background-color: var(--color-maroon);
+    background-image:
+      radial-gradient(120% 80% at 50% 8%, rgba(232, 69, 150, 0.35), transparent 60%),
+      radial-gradient(90% 70% at 50% 100%, rgba(0, 0, 0, 0.45), transparent 70%);
+  }
+
 }
