@@ -13,27 +13,41 @@ type MaskPopperProps = {
     size?: number;
     /** Seconds before this mask's very first rise. */
     delay?: number;
-    /** Seconds the rise-and-sink motion itself takes. */
-    duration?: number;
+    /** Seconds the rise (and, symmetrically, the sink) itself takes. */
+    riseDuration?: number;
+    /** Seconds the mask stays fully risen — eyes clear, holding — before it sinks back. */
+    holdDuration?: number;
     /** Seconds between the start of one appearance and the start of the next — set well
-     *  above `duration` (and staggered per-mask) so masks take turns instead of overlapping. */
+     *  above the total active time (rise + hold + sink) so masks take turns instead of
+     *  overlapping. */
     cyclePeriod?: number;
 };
 
+// Fraction of the mask's own height/width exposed by the porthole at full
+// rise — kept well above half so the reveal always clears past the eye line
+// instead of stopping at the mask's exact vertical/horizontal midpoint.
+const REVEAL = 0.72;
+
 /**
- * Each slot is a small "porthole" — an overflow-hidden window exactly half the
- * mask's size, docked at one edge of the hero. Depending on `direction`, the
- * mask enters from below/above/left/right and only ever shows the half of
- * itself nearest the opening (the rest stays cropped by the porthole's own
- * edge) — rising/dropping/sliding halfway into view, retreating fully out of
- * sight, then jumping to a new slot while hidden and doing it again. Only one
- * axis (x or y) ever moves, and both are always given explicit keyframes, so
- * framer-motion never leaves a stale transform behind when the direction
- * changes between slots.
+ * Each slot is a small "porthole" — an overflow-hidden window sized to
+ * `REVEAL` of the mask, docked at one edge of the hero and always extending
+ * *inward* from its anchor edge (e.g. a bottom-edge porthole grows upward
+ * into the section, never downward past the section's own bottom, which
+ * would let the section's own overflow-hidden silently re-clip the reveal).
+ * Depending on `direction`, the mask enters from below/above/left/right and
+ * only ever shows the portion of itself nearest the opening (the rest stays
+ * cropped by the porthole's own edge) — rising/dropping/sliding into view
+ * enough to clear the eyes, holding there for a beat, retreating fully out
+ * of sight, then jumping to a new slot while hidden and doing it again. Only
+ * one axis (x or y) ever moves, and both are always given explicit
+ * keyframes, so framer-motion never leaves a stale transform behind when the
+ * direction changes between slots.
  */
-export default function MaskPopper({ src, alt, slots, size = 110, delay = 0, duration = 1.3, cyclePeriod = 2.4 }: MaskPopperProps) {
+export default function MaskPopper({ src, alt, slots, size = 110, delay = 0, riseDuration = 0.8, holdDuration = 1.4, cyclePeriod = 4.6 }: MaskPopperProps) {
     const [slotIndex, setSlotIndex] = useState(0);
-    const pause = Math.max(0, cyclePeriod - duration);
+    const activeDuration = riseDuration * 2 + holdDuration;
+    const pause = Math.max(0, cyclePeriod - activeDuration);
+    const times = [0, riseDuration / activeDuration, (riseDuration + holdDuration) / activeDuration, 1];
 
     useEffect(() => {
         let interval: ReturnType<typeof setInterval> | undefined;
@@ -51,36 +65,37 @@ export default function MaskPopper({ src, alt, slots, size = 110, delay = 0, dur
     const slot = slots[slotIndex];
     const direction = slot.direction ?? 'up';
     const isVertical = direction === 'up' || direction === 'down';
-    const hidden = size * 0.52;
+    const reveal = size * REVEAL;
+    const hidden = size * (REVEAL + 0.02);
 
     const maskStyle: React.CSSProperties = { width: size, height: size, top: 0, left: 0 };
-    let xKeyframes = [0, 0, 0];
-    let yKeyframes = [0, 0, 0];
+    let xKeyframes = [0, 0, 0, 0];
+    let yKeyframes = [0, 0, 0, 0];
 
     switch (direction) {
         case 'up':
-            yKeyframes = [hidden, 0, hidden];
+            yKeyframes = [hidden, 0, 0, hidden];
             break;
         case 'down':
-            maskStyle.top = -size / 2;
-            yKeyframes = [-hidden, 0, -hidden];
+            maskStyle.top = -size * (1 - REVEAL);
+            yKeyframes = [-hidden, 0, 0, -hidden];
             break;
         case 'left':
-            maskStyle.left = -size / 2;
-            xKeyframes = [-hidden, 0, -hidden];
+            maskStyle.left = -size * (1 - REVEAL);
+            xKeyframes = [-hidden, 0, 0, -hidden];
             break;
         case 'right':
-            xKeyframes = [hidden, 0, hidden];
+            xKeyframes = [hidden, 0, 0, hidden];
             break;
     }
 
     const containerStyle: React.CSSProperties = {
         top: slot.top,
         left: slot.left,
-        width: isVertical ? size : size / 2,
-        height: isVertical ? size / 2 : size,
-        marginLeft: isVertical ? -size / 2 : 0,
-        marginTop: isVertical ? 0 : -size / 2,
+        width: isVertical ? size : reveal,
+        height: isVertical ? reveal : size,
+        marginLeft: isVertical ? -size / 2 : direction === 'right' ? -reveal : 0,
+        marginTop: !isVertical ? -size / 2 : direction === 'up' ? -reveal : 0,
     };
 
     return (
@@ -89,7 +104,7 @@ export default function MaskPopper({ src, alt, slots, size = 110, delay = 0, dur
                 className="absolute"
                 style={maskStyle}
                 animate={{ x: xKeyframes, y: yKeyframes }}
-                transition={{ duration, delay, repeat: Infinity, repeatDelay: pause, ease: 'easeInOut' }}
+                transition={{ duration: activeDuration, times, delay, repeat: Infinity, repeatDelay: pause, ease: 'easeInOut' }}
             >
                 <Image src={src} alt={alt} fill className="object-contain" />
             </motion.div>

@@ -22,7 +22,7 @@ export default function DrinkMenuBoard() {
                     <div className="max-w-5xl mx-auto px-6 md:px-10 pt-10 md:pt-16 pb-16 md:pb-20">
                         {/* Headline */}
                         <div className="relative flex justify-center mb-14 md:mb-20">
-                            <OutlineHeadline color={PINK} className="text-[4.5rem] leading-[0.85] md:text-[8rem]">
+                            <OutlineHeadline color={PINK} solid className="text-[4.5rem] leading-[0.85] md:text-[8rem]">
                                 Drink
                             </OutlineHeadline>
                             <MaskAccent mask="anger" size={60} className="absolute -left-10 top-1/2 -translate-y-1/2 hidden sm:block" />

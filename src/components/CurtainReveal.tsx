@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { FanBottom } from '@/components/menu/MenuBoardFrame';
 
 const VIDEO_SRC = '/Hero Video.mp4';
 const POSTER_SRC = '/images/Screenshot 2026-03-06 at 15.12.15.png';
@@ -68,10 +67,7 @@ export default function CurtainReveal() {
                             'repeating-linear-gradient(90deg, rgba(0,0,0,0.22) 0px, transparent 16px, rgba(255,255,255,0.06) 32px, transparent 48px), linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 10%, transparent 85%, rgba(0,0,0,0.5) 100%)',
                         boxShadow: '0 40px 70px -25px rgba(0,0,0,0.65)',
                     }}
-                >
-                    {/* Gold fringe valance where the curtain meets its rod — the fan motif hanging down instead of sitting along a bottom edge */}
-                    <FanBottom color="#FFD695" flip className="absolute top-0 inset-x-0" />
-                </motion.div>
+                />
             </div>
         </div>
     );

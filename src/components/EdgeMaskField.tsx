@@ -23,11 +23,15 @@ const R2 = { top: '55%', left: '94%', direction: 'right' as const };
 const R3 = { top: '75%', left: '94%', direction: 'right' as const };
 
 // Slow, strictly one-at-a-time rhythm: each mask gets its own turn in a round
-// robin, with only one ever rising at once. RISE_DURATION is long enough to
-// read clearly, and STAGGER (a mask's turn length) is padded well past that
-// so there's no overlap between one mask sinking and the next rising.
-const RISE_DURATION = 1.5;
-const STAGGER = 1.9;
+// robin, with only one ever rising at once. RISE_DURATION is the time spent
+// travelling up/down/sideways; HOLD_DURATION is how long it then lingers
+// fully risen (eyes clear) before sinking back. STAGGER (a mask's turn
+// length) is padded past the full rise+hold+sink span so there's no overlap
+// between one mask sinking and the next rising.
+const RISE_DURATION = 0.8;
+const HOLD_DURATION = 1.4;
+const ACTIVE_DURATION = RISE_DURATION * 2 + HOLD_DURATION;
+const STAGGER = ACTIVE_DURATION + 0.6;
 const TOTAL_CYCLE = 5 * STAGGER;
 
 const BASE_MASKS = [
@@ -91,7 +95,8 @@ export default function EdgeMaskField({ sizeScale = 1 }: EdgeMaskFieldProps) {
                     slots={mask.slots}
                     size={mask.size * sizeScale}
                     delay={mask.delay}
-                    duration={RISE_DURATION}
+                    riseDuration={RISE_DURATION}
+                    holdDuration={HOLD_DURATION}
                     cyclePeriod={TOTAL_CYCLE}
                 />
             ))}
